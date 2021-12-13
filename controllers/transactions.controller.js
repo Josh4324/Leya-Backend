@@ -28,13 +28,16 @@ Transaction.getAllTransactions = async (req, res, next) => {
         }else{
           result = await sql.query`SELECT * from settlement_notifications where virtual_acct_no=${account} and created_at >=${startDate} and created_at <=${endDate}`;
         }
-       
+        logger.info(`Request recieved at /api/v1/transactions | Request Object - ${JSON.stringify(req.body)} | Response - ${JSON.stringify({
+          status: "Success",
+          data: result.recordset
+       })}`);
         return res.status(200).json({
            status: "Success",
            data: result.recordset
         });
       } catch (error) {
-          console.log(error);
+        logger.error(`Request recieved at /api/v1/merchants | Request Object - ${JSON.stringify(req.body)} | Response - ${JSON.stringify({error})}`);
         return res.status(500).json(error);
       }
 };

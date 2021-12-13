@@ -4,7 +4,6 @@ const Merchant = require('./merchants.routes');
 const Account = require('./accounts.routes');
 const Transaction = require('./transactions.routes');
 const User = require('./user.routes');
-const LoggerService = require('../middleware/logger');
 
 router.use(Merchant);
 router.use(Account);
